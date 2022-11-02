@@ -28,6 +28,10 @@ def scanlocal(disk):
                 print(bcolors.OKGREEN + file_path + " (" + version + ") IS NOT VULNERABLE!" + bcolors.ENDC)
             elif("3.0.0.0" < version < "3.0.6.9"):
                 print(bcolors.WARNING + file_path + " (" + version + ") IS VULNERABLE!" + bcolors.ENDC)
+            elif(version > "3.0.6.9"):
+                print(bcolors.OKGREEN + file_path + " (" + version + ") IS NOT VULNERABLE!" + bcolors.ENDC)
+            else:
+                print("NOT FOUND!")
     else:
         import osquery
         instance = osquery.SpawnInstance()
