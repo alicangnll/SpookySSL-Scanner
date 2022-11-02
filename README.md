@@ -30,7 +30,7 @@ Source : https://blog.checkpoint.com/2022/11/01/openssl-vulnerability-cve-2022-3
 </p>
 <h2>Installation</h2>
 <ul>
-<li>pip install win32api</li>
+<li>pip install pypiwin32</li>
 <li>pip install glob</li>
 <li>pip install platform</li>
 <li>pip install osquery (for Linux)</li>
