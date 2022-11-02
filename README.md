@@ -2,7 +2,7 @@
 SpookySSL CVE-2022-3602 SSLv3 Scanner for Windows, Linux, macOS
 <br><br>
 <h2>What is the CVE-2022-3602?</h2>
-<code>First of all, we must be know Remote code execution (RCE)
+<pre>First of all, we must be know Remote code execution (RCE)
 <br>
 Remote code execution (RCE) attacks allow an attacker to remotely execute malicious code on a computer. The impact of an RCE vulnerability can range from malware execution to an attacker gaining full control over a compromised machine.
 <br>
@@ -13,7 +13,7 @@ The vulnerable function ossl_punycode_decode may cause buffer overflow during Pu
 1) Craft a CA (certificate authority) certificate or Intermediary certificate that contains the “nameConstraints” field with a malicious Punycode string. The Punycode string must contain at least 512 bytes excluding “xn--”.
 2) Craft a leaf certificate that contains a SubjectAlternateName (SAN) otherName field that specifies a SmtpUTF8Mailbox string
 Source : https://blog.checkpoint.com/2022/11/01/openssl-vulnerability-cve-2022-3602-remote-code-execution-and-cve-2022-3786-denial-of-service-check-point-research-update/
-</code>
+</pre>
 <h2>Installation</h2>
 <ul>
 <li>pip install win32api</li>
