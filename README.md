@@ -1,6 +1,11 @@
 # SpookySSL-Scanner
 SpookySSL CVE-2022-3602 SSLv3 Scanner for Windows, Linux, macOS
 <br><br>
+<h2>(Turkish) Zafiyet Nasıl Oluşuyor?</h2>
+<p>Öncelikle sorun byte boyutunu belirlerken ortaya çıkıyor. Bayt boyutunu belirlerken farkındaysanız NULL yani boş/sıfır değer tanımlanmamış yani bayt uzunluğu sıfır olarak belirlenebiliyor. Alttaki komutta xn-- ile başlayan kısım direkt olarak farklı alfabelerde (örneğin Çince) yazılmış alfabedeki domain adlarının latin alfabesine dönüştürülmesi anlamına geliyor. If döngüsü içerisinde memcpy komutu delta + 1 değerlik bir stack alanını memory üzerinde ayırıyor ve outptr değerini bu alana yazıyor. NULL değer girildiğinde ise 1 baytlık yer açıldığı için iki adet boşluk kodu bir buffer overflow yaratıyor.<p>
+<br>
+<img src="vulncode.jpeg" />
+<br><br>
 <h2>What is the CVE-2022-3602?</h2>
 <p>First of all, we must be know Remote code execution (RCE)
 <br>
