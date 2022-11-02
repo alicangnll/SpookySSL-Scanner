@@ -1,4 +1,5 @@
-import platform, glob
+import platform, glob, sys
+from time import sleep
 from win32api import *
 
 class bcolors:
@@ -48,3 +49,5 @@ print(" SpookySSL CVE-2022-3602 SSLv3 Scanner (11-02-2022) ")
 print("====================================================")
 disk = input("Write your disk name (ex. C, D) : ")
 scanlocal(disk)
+sleep(5000)
+sys.exit(0)
