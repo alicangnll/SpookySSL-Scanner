@@ -1,6 +1,4 @@
-import platform, glob, sys
-from time import sleep
-from win32api import *
+import platform, glob, sys, time, win32api
 
 class bcolors:
     HEADER = '\033[95m'
@@ -14,10 +12,10 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 def get_version_number(file_path):
-    File_information = GetFileVersionInfo(file_path, "\\")
+    File_information = win32api.GetFileVersionInfo(file_path, "\\")
     ms_file_version = File_information['FileVersionMS']
     ls_file_version = File_information['FileVersionLS']
-    return [str(HIWORD(ms_file_version)), str(LOWORD(ms_file_version)), str(HIWORD(ls_file_version)), str(LOWORD(ls_file_version))]
+    return [str(win32api.HIWORD(ms_file_version)), str(win32api.LOWORD(ms_file_version)), str(win32api.HIWORD(ls_file_version)), str(win32api.LOWORD(ls_file_version))]
 
 def scanlocal(disk):
     if(platform.system() == "Windows"):
@@ -25,14 +23,16 @@ def scanlocal(disk):
         dlllist = glob.glob('' + str(disk) + ':\\**\libssl*.dll', recursive=True)
         for file_path in dlllist:
             version = ".".join(get_version_number(file_path))
-            if("1.1.1.0" < version < "1.1.1.99"):
+            if("1.1.1.0" <= version <= "1.1.1.99"):
                 print(bcolors.OKGREEN + file_path + " (" + version + ") IS NOT VULNERABLE!" + bcolors.ENDC)
-            elif("3.0.0.0" < version < "3.0.6.9"):
+            elif("3.0.0.0" <= version <= "3.0.6.9"):
                 print(bcolors.WARNING + file_path + " (" + version + ") IS VULNERABLE!" + bcolors.ENDC)
             elif(version > "3.0.6.9"):
                 print(bcolors.OKGREEN + file_path + " (" + version + ") IS NOT VULNERABLE!" + bcolors.ENDC)
+            elif(version < "1.1.1.0"):
+                print(bcolors.OKCYAN + file_path + " (" + version + ") IS NOT FOUND!" + bcolors.ENDC)
             else:
-                print("NOT FOUND!")
+                print("NOT FOUND (" + file_path + " | " + version + ")")
     else:
         import osquery
         instance = osquery.SpawnInstance()
@@ -49,5 +49,5 @@ print(" SpookySSL CVE-2022-3602 SSLv3 Scanner (11-02-2022) ")
 print("====================================================")
 disk = input("Write your disk name (ex. C, D) : ")
 scanlocal(disk)
-sleep(5000)
+time.sleep(5000)
 sys.exit(0)
