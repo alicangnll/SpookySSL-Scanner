@@ -26,7 +26,7 @@ def scanlocal(disk):
             version = ".".join(get_version_number(file_path))
             if("1.1.1.0" < version < "1.1.1.99"):
                 print(bcolors.OKGREEN + file_path + " (" + version + ") IS NOT VULNERABLE!" + bcolors.ENDC)
-            elif("3.0.0" < version < "3.0.6"):
+            elif("3.0.0.0" < version < "3.0.6.9"):
                 print(bcolors.WARNING + file_path + " (" + version + ") IS VULNERABLE!" + bcolors.ENDC)
     else:
         import osquery
